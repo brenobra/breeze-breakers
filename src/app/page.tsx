@@ -1,9 +1,39 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const breakers = [
+    { id: 1, name: "Breaker 1", description: "15A, Kitchen" },
+    { id: 2, name: "Breaker 2", description: "20A, Living Room" },
+    { id: 3, name: "Breaker 3", description: "30A, Garage" },
+    // Add more breakers as needed
+  ];
+
+  const filteredBreakers = breakers.filter((breaker) =>
+    breaker.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    breaker.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <input
+          type="text"
+          placeholder="Search Breakers"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="border p-2 rounded mb-4"
+        />
+        <ul className="list-disc">
+          {filteredBreakers.map((breaker) => (
+            <li key={breaker.id} className="mb-2">
+              <strong>{breaker.name}</strong>: {breaker.description}
+            </li>
+          ))}
+        </ul>
         <Image
           className="dark:invert"
           src="/next.svg"
