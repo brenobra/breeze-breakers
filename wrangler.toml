@@ -1,0 +1,16 @@
+name = "breeze-breakers"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[assets]
+directory = "./src/static"
+binding = "ASSETS"
+
+# D1 Database (you'll add the database_id after creating it)
+[[d1_databases]]
+binding = "DB"
+database_name = "breeze-breakers-db"
+# database_id = "96ffcb32-8d1b-44bb-b7e5-492d6a3b5800"
+
+[vars]
+ENVIRONMENT = "development"
